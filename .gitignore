@@ -5,3 +5,4 @@ ssl.cert
 server
 main
 bluegateway.log
+gateway.log
