@@ -1,0 +1,35 @@
+# Service Configuration
+services:
+  redis:
+    - "localhost:6379"
+    - "localhost:6377"
+  admin:  
+    dicovery: false , # if true socket should be provided
+    prefix: "admin" # the path string that will be used to redirect to the correct services that this proxy server will sereve as gateway
+    targets: "http://localhost:5500,http://localhost:7500,http://localhost:8500"      # list of urls to load separated by comas balance to
+    socket : "service.socks" #unix socket locaiton
+    # Load Balancing Settings
+    loadbalance:
+      option: "round_robbin"  # possible values are  "round_robbin" ,"weighted_least"
+    ratelimit:
+      source: "redis"
+      option: "Sliding Counter" #"defaults" to None, possible values are "Token bucket", "Sliding Counter"
+      redis: 1 # which redis services to use to manage ratelimiting , required for token bucket if using redis
+      limit : 2000  # how many requests to process based on the the given interval
+      interval: 5  # the time interval span in seconds  on which the limit is enforced on
+      rabbit: 1 #  which redis services to use to manage ratelimiting , required for token bucket if using rabbitmq
+  blue:  
+    dicovery: false , # if true socket should be provided
+    prefix: "blue" # the path string that will be used to redirect to the correct services that this proxy server will sereve as gateway
+    targets: "http://localhost:5500,http://localhost:3500,http://localhost:8500"      # list of urls to load separated by comas balance to
+    socket : "service.socks" #unix socket locaiton
+    # Load Balancing Settings
+    loadbalance:
+      option: "round_robbin"  # # possible values are  "round_robbin" ,"weighted_least"
+    ratelimit:
+      source: "redis"
+      option: "None" #"defaults" to None, possible values are "Token bucket", "Sliding Counter"
+      redis: 1 # which redis services to use to manage ratelimiting , required for token bucket if using redis
+      limit : 2  # how many requests to process based on the the given interval
+      interval: 5  # the time interval span in seconds  on which the limit is enforced on
+      rabbit: 1 #  which rabbit services to use to manage ratelimiting , required for token bucket if using rabbitmq

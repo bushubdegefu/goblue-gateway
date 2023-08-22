@@ -1,0 +1,21 @@
+{
+    "CN": "127.0.0.1",
+    "hosts": [
+    "localhost",
+    "127.0.0.1",
+    "beimdegefu@gmail.com"
+    ],
+    "key": {
+    "algo": "rsa",
+    "size": 4096
+    },
+    "names": [
+    {
+    "C": "ETH",
+    "L": "ADD",
+    "ST": "Addis Ababa",
+    "O": "Blue Gate Ways",
+    "OU": "CA Services"
+    }
+    ]
+    }

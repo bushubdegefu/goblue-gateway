@@ -1,0 +1,7 @@
+ssl.key
+ssl.cert
+.env
+.space/
+server
+main
+bluegateway.log
